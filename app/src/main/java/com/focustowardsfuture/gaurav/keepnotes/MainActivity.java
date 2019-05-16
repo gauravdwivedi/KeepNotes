@@ -151,6 +151,10 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(this, "All Notes deleted", Toast.LENGTH_SHORT).show();
                 return true;
 
+            case R.id.about_us:
+                Intent i =new Intent(MainActivity.this,AboutUs.class);
+                startActivity(i);
+
                 default:
                     return super.onOptionsItemSelected(item);
         }

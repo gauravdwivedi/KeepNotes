@@ -3,6 +3,7 @@ package com.focustowardsfuture.gaurav.keepnotes;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -20,6 +21,7 @@ public class NoteAdapter extends ListAdapter<Note, NoteAdapter.NoteHolde> {
 
    // private List<Note> notes = new ArrayList<>(); //bcz we passed the list to the super class, it will takecare of it
     private OnItemClickListener listener;
+
 
     public NoteAdapter() {
         super(DIFF_CALLBACK);
@@ -54,12 +56,14 @@ public class NoteAdapter extends ListAdapter<Note, NoteAdapter.NoteHolde> {
         holder.textViewTitle.setText(currentNote.getTitle());
         holder.textViewDescription.setText(currentNote.getDescription());
         holder.textViewPriority.setText(String.valueOf(currentNote.getPriority()));
-
+        if(currentNote.getPriority()>7){
+            holder.relativeLayout.setBackgroundResource(R.color.priorityHigh);
+        } else if(currentNote.getPriority()>4 && currentNote.getPriority()<8){
+            holder.relativeLayout.setBackgroundResource(R.color.priorityMid);
+        }else{
+            holder.relativeLayout.setBackgroundResource(R.color.priorityLow);
+        }
     }
-
-
-
-
     public Note getNoteAt(int position) {
         return getItem(position);
     }
@@ -69,6 +73,7 @@ public class NoteAdapter extends ListAdapter<Note, NoteAdapter.NoteHolde> {
         private TextView textViewTitle;
         private TextView textViewDescription;
         private TextView textViewPriority;
+        private RelativeLayout relativeLayout;
 
 
         public NoteHolde(@NonNull View itemView) {
@@ -76,6 +81,8 @@ public class NoteAdapter extends ListAdapter<Note, NoteAdapter.NoteHolde> {
             textViewTitle = itemView.findViewById(R.id.text_view_title);
             textViewDescription = itemView.findViewById(R.id.text_view_description);
             textViewPriority = itemView.findViewById(R.id.text_view_priority);
+            relativeLayout=itemView.findViewById(R.id.container);
+
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override

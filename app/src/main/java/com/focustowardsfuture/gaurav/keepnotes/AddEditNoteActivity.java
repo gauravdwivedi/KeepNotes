@@ -32,6 +32,7 @@ private NumberPicker numberPickerPriority;
         editTextDescription = findViewById(R.id.edit_text_description);
         numberPickerPriority = findViewById(R.id.number_picker_priority);
 
+
         numberPickerPriority.setMinValue(1);
         numberPickerPriority.setMaxValue(10);
 
